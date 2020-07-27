@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+
+{{ HTTP_CN }}<br>
+{{ user }}<br>
+{{ user.email }}<br>
+
+<a href="/Shibboleth.sso/Logout">logout</a>
+{% endblock %}
