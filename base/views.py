@@ -4,6 +4,7 @@ from django.contrib import auth
 from django.http import HttpResponse
 from django.template import loader
 
+
 # Create your views here.
 def index(request):
     return render(request, 'base/index.html')
@@ -18,3 +19,4 @@ def users(request):
     #return render(request, 'base/users.html', data)
     #else:
     #    return redirect(reverse('base:index'))
+

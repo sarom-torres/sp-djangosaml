@@ -26,9 +26,7 @@ SECRET_KEY = 'mzqqgr@mrk@4$)#4g(v*fdksrubct31xf*u)xwo=5v1zze+hd+'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'sp-django',
-    'dev.gidlab.rnp.br',
-    '200.130.99.28'
+    '*'
 ]
 
 
@@ -48,7 +46,6 @@ INSTALLED_APPS = [
 AUTHENTICATION_BACKENDS = [
     'shibboleth.backends.ShibbolethRemoteUserBackend',
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -132,6 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/app/base/static/'
 
 SHIBBOLETH_ATTRIBUTE_MAP = {
     "eppn": (True, "username"),
@@ -139,8 +137,4 @@ SHIBBOLETH_ATTRIBUTE_MAP = {
     "sn": (True, "last_name"),
     "mail": (False, "email"),
 }
-LOGIN_URL = 'https://dev.gidlab.rnp.br/Shibboleth.sso/Login'
-LOGOUT_URL = 'https://dev.gidlab.rnp.br/Shibboleth.sso/Logout'
-# Setup support for proxy headers
-USE_X_FORWARDED_HOST = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+LOGIN_URL = 'https://dev.cafeexpresso.rnp.br/Shibboleth.sso/Login'
