@@ -7,9 +7,11 @@ from django.template import loader
 
 # Create your views here.
 def index(request):
+    if request.user.is_authenticated:
+        return redirect('/users')
     return render(request, 'base/index.html')
 
-@login_required
+@login_required(redirect_field_name='target')
 def users(request):
     template = loader.get_template('base/users.html')
     meta = request.META

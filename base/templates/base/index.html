@@ -1,5 +1,7 @@
 {% extends 'base/base.html' %}
 
+{% load static %}
+
 {% block content %}
 
   <section class="section">
@@ -20,7 +22,7 @@
      <button class="button is-info">
       GIdLab
     </button>
-      <form action="{{ login_link }}">
+    <form action="/Shibboleth.sso/Login">
     <button class="button is-success">
       Login Institucional
     </button>

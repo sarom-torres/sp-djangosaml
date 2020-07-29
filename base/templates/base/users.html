@@ -1,10 +1,46 @@
 {% extends 'base/base.html' %}
 
+{% load static %}
 
 {% block content %}
 
-{{ HTTP_CN }}
-{{ user }}
-{{ user.email }}
+        <div class="container">
+        <div class="row">
+        <div class="col s12 m1 xl1"></div>
+        <div class="col s12 m9 xl9">
+              <table class="highlight">
+                <thead>
+                  <tr>
+                      <th class="center">Atributo</th>
+                      <th class="center">Valor</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>ePPN:</td>
+                    <td>{{ user.username }}</td>
+                  </tr>
+
+                  <tr>
+                    <td>Email:</td>
+                    <td>{{ user.email }}</td>
+                  </tr>
+
+                  <tr>
+                    <td>GivenName:</td>
+                    <td>{{ user.first_name }}</td>
+                  </tr>
+
+                  <tr>
+                    <td>SurName:</td>
+	            <td>{{ user.last_name }}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+          </div>
+      </div>
+   </div>
 {% endblock %}
 

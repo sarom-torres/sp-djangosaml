@@ -1,8 +1,7 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+{% load static %}
     <meta charset="UTF-8">
     <title>sp-django</title>
     <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
@@ -29,16 +28,22 @@
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
 
 {% endblock %}
+
+<div class="content has-text-centered">
+          <div class="row">
+            <div class="col s12 m4"></div>
+            <div class="col s12 m4">
+              <img class="responsive-img center" src="{% static 'images/logo-cafe.png' %} ">
+            </div>
+          </div>
+</div>
+
 <footer class="footer">
   <div class="content has-text-centered">
     <p>
-      Developed by <a target="_blank" href="https://allexmagno.com.br">Allex Magno Andrade</a>.
+      Developed by <a target="_blank" href="https://gidlab.rnp.br">GIdLab</a>.
     </p>
   </div>
 </footer>

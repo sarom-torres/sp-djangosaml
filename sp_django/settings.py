@@ -129,12 +129,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/app/base/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 SHIBBOLETH_ATTRIBUTE_MAP = {
     "eppn": (True, "username"),
-    "cn": (True, "first_name"),
+    "givenName": (True, "first_name"),
     "sn": (True, "last_name"),
     "mail": (False, "email"),
 }
-LOGIN_URL = 'https://dev.cafeexpresso.rnp.br/Shibboleth.sso/Login'
+LOGIN_URL = '/Shibboleth.sso/Login'
