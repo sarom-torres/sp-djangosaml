@@ -132,9 +132,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 SHIBBOLETH_ATTRIBUTE_MAP = {
-    "eppn": (True, "username"),
-    "givenName": (True, "first_name"),
-    "sn": (True, "last_name"),
-    "mail": (False, "email"),
+    "Shib-Attr-eppn": (True, "username"),
+    "Shib-Attr-givenName": (True, "first_name"),
+    "Shib-Attr-sn": (True, "last_name"),
+    "Shib-Attr-mail": (False, "email"),
 }
 LOGIN_URL = '/Shibboleth.sso/Login'
