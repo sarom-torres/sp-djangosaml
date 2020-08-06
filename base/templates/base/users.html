@@ -4,19 +4,18 @@
 
 {% block content %}
 
-        <div class="container">
-        <div class="row">
-        <div class="col s12 m1 xl1"></div>
-        <div class="col s12 m9 xl9">
-              <table class="highlight">
-                <thead>
-                  <tr>
-                      <th class="center">Atributo</th>
-                      <th class="center">Valor</th>
-                  </tr>
-                </thead>
+<div class="container">
+  <div class="notification">
+          <h2>Django User Info</h2>
+    <table class="table">
+	  <thead>
+   	     <tr>
+        	<th><abbr title="Shib-Attribute">Attribute</abbr></th>
+        	<th><abbr title="Value">Value</abbr></th>
+    	     </tr>
 
-                <tbody>
+	  </thead>
+    	  <tbody>
                   <tr>
                     <td>ePPN:</td>
                     <td>{{ user.username }}</td>
@@ -42,5 +41,12 @@
           </div>
       </div>
    </div>
+ <div style="text-align: center">
+    <form action="/Shibboleth.sso/Login?return=/" method="post">
+    <button style="align-content: center" class="button is-warning" type="submit">LogOut</button>
+    </form>
+    </div>
+
+
 {% endblock %}
 
