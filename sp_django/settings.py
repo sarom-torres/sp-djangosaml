@@ -138,3 +138,5 @@ SHIBBOLETH_ATTRIBUTE_MAP = {
     "Shib-Attr-mail": (False, "email"),
 }
 LOGIN_URL = '/Shibboleth.sso/Login'
+SHIBBOLETH_LOGOUT_URL = '/Shibboleth.sso/Logout?return=%s'
+SHIBBOLETH_LOGOUT_REDIRECT_URL = '/'

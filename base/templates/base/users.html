@@ -42,10 +42,12 @@
       </div>
    </div>
  <div style="text-align: center">
-    <form action="/Shibboleth.sso/Login?return=/" method="post">
-    <button style="align-content: center" class="button is-warning" type="submit">LogOut</button>
-    </form>
-    </div>
+    <form action="{{ logout_link }}">
+    <button class="button is-warning">
+      LogOut
+    </button>
+    
+</div>
 
 
 {% endblock %}
