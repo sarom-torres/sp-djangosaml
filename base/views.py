@@ -11,7 +11,6 @@ def index(request):
         return redirect('/users')
     return render(request, 'base/index.html')
 
-#@login_required(redirect_field_name='target')
 @login_required
 def users(request):
     template = loader.get_template('base/users.html')

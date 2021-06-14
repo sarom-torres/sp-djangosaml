@@ -18,6 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('shib/', include('shibboleth.urls', namespace='shibboleth')),
-    path('', include('base.urls', namespace='base'))
+    path('', include('base.urls', namespace='base')),
+    path(r'saml2/', include('djangosaml2.urls'))
 ]

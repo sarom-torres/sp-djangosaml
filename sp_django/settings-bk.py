@@ -118,20 +118,25 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 #---------- CONFIGURACOES SAML -----------
+
+
 SAML_SESSION_COOKIE_NAME = 'saml_session'
 SESSION_COOKIE_SAMESITE=None
 
-LOGIN_URL = '/saml2/login/' 
+LOGIN_URL = '/saml2/login/' # URL de redirecionamento para endpoints protegidos
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-SAML_DEFAULT_BINDING = saml2.BINDING_HTTP_POST  
+SAML_DEFAULT_BINDING = saml2.BINDING_HTTP_POST # SP-initiated SSO flow
 
 SAML_IGNORE_LOGOUT_ERRORS = True
 
 SAML2_DISCO_URL = 'https://ds.cafeexpresso.rnp.br/WAYF.php'
 
-SAML_CREATE_UNKNOWN_USER = True 
+#SAML_DJANGO_USER_MAIN_ATTRIBUTE = 'username'
 
+SAML_CREATE_UNKNOWN_USER = True # cria usuario no banco de dados
+
+#ACS_DEFAULT_REDIRECT_URL = reverse_lazy('/')
 LOGIN_REDIRECT_URL = '/users'
 
 SAML_ATTRIBUTE_MAPPING = {
@@ -139,18 +144,24 @@ SAML_ATTRIBUTE_MAPPING = {
     'mail': ('email', ),
     'givenName': ('first_name', ),
     'sn': ('last_name', ),
-}
+} # 'Atrib_SAML':('Atrib_USER_DJANGO')
+
+#SAML_CONFIG_LOADER = os.path.join(BASE_DIR,'sp_django','sp-config')
 
 SAML_CONFIG = {
+  # full path to the xmlsec1 binary programm
   'xmlsec_binary': '/usr/bin/xmlsec1',
 
+  # your entity id, usually your subdomain plus the url to the metadata view
   'entityid': FQDN + '/saml2/metadata/',
 
-  'attribute_map_dir': os.path.join(BASE_DIR, 'attribute-maps'), 
-  
+  # directory with attribute mapping
+  'attribute_map_dir': os.path.join(BASE_DIR, 'attribute-maps'), # DONE criar diretorio e incluir arquivos do github
   'description': 'SP Implicit',
 
+  # this block states what services we provide
   'service': {
+      # we are just a lonely SP
       'sp' : {
           'name': 'SP Django Implicit',
           'ui_info': {
@@ -161,15 +172,24 @@ SAML_CONFIG = {
                 },
   
           'name_id_format': [
-                "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent", 
+                "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent", # TODO ver como colocar lista de transient/persistent
                 "urn:oasis:names:tc:SAML:2.0:nameid-format:transient",
           ],
+          # For Okta add signed logout requets. Enable this:
+          # "logout_requests_signed": True,
+
+            # TODO criar constant para dominio ou ip FQDN
           'endpoints': {
+              # url and binding to the assetion consumer service view
+              # do not change the binding or service name
               'assertion_consumer_service': [
                   (FQDN +'/saml2/acs/',
                    saml2.BINDING_HTTP_POST),
                   ],
+              # url and binding to the single logout service view
+              # do not change the binding or service name
               'single_logout_service': [
+                  # Disable next two lines for HTTP_REDIRECT for IDP's that only support HTTP_POST. Ex. Okta:
                   (FQDN + '/saml2/ls/',
                    saml2.BINDING_HTTP_REDIRECT),
                   (FQDN + '/saml2/ls/post',
@@ -180,10 +200,14 @@ SAML_CONFIG = {
           'signing_algorithm':  saml2.xmldsig.SIG_RSA_SHA256,
           'digest_algorithm':  saml2.xmldsig.DIGEST_SHA256,
 
+           # Mandates that the identity provider MUST authenticate the
+           # presenter directly rather than rely on a previous security context.
           'force_authn': False,
 
+           # Enable AllowCreate in NameIDPolicy.
           'name_id_format_allow_create': False,
 
+           # attributes that this project need to identify a user
           'required_attributes': ['eduPersonPrincipalName',
                                   'givenName',
                                   'sn',
@@ -200,20 +224,31 @@ SAML_CONFIG = {
           },
       },
 
+  # where the remote metadata is stored, local, remote or mdq server.
+  # One metadatastore or many ...
+  # TODO metadado da federacao, escolher apenas um
   'metadata': {
+      #'local': [os.path.join(BASE_DIR, 'ds-metadata.xml')],
       'remote': [{"url": "https://ds.cafeexpresso.rnp.br/metadata/ds-metadata.xml","cert": "null"},]
+      #'mdq': [{"url": "https://ds.testunical.it",
+      #         "cert": "certficates/others/ds.testunical.it.cert",
+      #        }]
       },
 
+  # set to 1 to output debugging information
   'debug': 1,
 
+  # Signing
   'key_file': os.path.join(BASE_DIR, CERT_DIR, 'mykey.pem'),  # private part
   'cert_file': os.path.join(BASE_DIR, CERT_DIR, 'mycert.pem'),  # public part
 
+  #Encryption
   'encryption_keypairs': [{
       'key_file': os.path.join(BASE_DIR, CERT_DIR, 'mykey.pem'),  # private part
       'cert_file': os.path.join(BASE_DIR, CERT_DIR, 'mycert.pem'),  # public part
   }],
 
+  # own metadata settings
   'contact_person': [
       {'given_name': 'GIdLab',
        'sur_name': 'Equipe',
@@ -221,6 +256,7 @@ SAML_CONFIG = {
        'email_address': 'gidlab@rnp.br',
        'contact_type': 'technical'},
       ],
+  # you can set multilanguage information here
   'organization': {
       'name': [('GIdLab', 'pt-br')],
       'display_name': [('GIdLab', 'pt-br')],
