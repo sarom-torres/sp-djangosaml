@@ -117,15 +117,17 @@ LOGIN_URL = '/saml2/login/'
 # Encerra a sessão quando o usuário fecha o navegador
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
+# Tipo de binding utilizado
 SAML_DEFAULT_BINDING = saml2.BINDING_HTTP_POST  
-
 SAML_IGNORE_LOGOUT_ERRORS = True
 
 # Serviço de descoberta da cafeexpresso
 SAML2_DISCO_URL = 'https://ds.cafeexpresso.rnp.br/WAYF.php'
 
+# Cria usuário Django a partir da asserção SAML caso o mesmo não exista
 SAML_CREATE_UNKNOWN_USER = True 
 
+# URL para redirecionamento após a autenticação
 LOGIN_REDIRECT_URL = '/users'
 
 # Mapeamento de atributos de usuário SAML2 para atributos de usuário Django 
