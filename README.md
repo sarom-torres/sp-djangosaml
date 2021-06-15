@@ -307,3 +307,18 @@ def users(request):
     return HttpResponse(template.render(meta, request))
 
 ```
+## Execução da aplicação exemplo.
+A aplicação utiliza o servidor Web Python padrão. Para execução da aplicação utilize o seguinte comando:
+```console
+$ python manage.py runserver 0:8080
+```
+
+## Endpoints da aplicação
+A lista abaixo contém os principais *endpoints* configurados na aplicação.
+- `/`: página inicial da aplicação contendo botão para login institucional.
+- `/saml2/login/`: *endpoint* para realização de login. Os *endpoints* protegidos com autenticação SAML serão redirecionados para essa URL.
+- `/saml2/metadata`: *endpoint* para o metadado do SP.
+- `/users`: *endpoint* protegido com autenticação SAML. Apresenta em tela os atributos obtidos do IdP.
+
+
+
