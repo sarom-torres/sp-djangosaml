@@ -118,7 +118,7 @@ SAML_DEFAULT_BINDING = saml2.BINDING_HTTP_POST
 SAML_IGNORE_LOGOUT_ERRORS = True
 
 # Serviço de descoberta da cafeexpresso
-SAML2_DISCO_URL = 'https://ds.cafeexpresso.rnp.br/WAYF.php'
+SAML2_DISCO_URL = 'https://ds.exemplo.com.br/WAYF.php'
 
 # Cria usuário Django a partir da asserção SAML caso o mesmo não exista
 SAML_CREATE_UNKNOWN_USER = True
@@ -235,7 +235,7 @@ SAML_CONFIG = {
  
  # Indica onde os metadados podem ser encontrados
  'metadata': {
-   'remote': [{"url": "https://ds.cafeexpresso.rnp.br/metadata/ds-metadata.xml","cert": "null"},]
+   'remote': [{"url": "https://ds.exemplo.com.br/ds-metadata.xml","cert": "null"},]
  }, 
  #...outras configurações 
 }
@@ -268,18 +268,18 @@ SAML_CONFIG = {
  #...outras configurações
   # Descreve a pessoa responsável pelo serviço
   'contact_person': [
-      {'given_name': 'GIdLab',
+      {'given_name': 'Equipe',
        'sur_name': 'Equipe',
-       'company': 'RNP',
-       'email_address': 'gidlab@rnp.br',
+       'company': 'ACME',
+       'email_address': 'local@exemplo.br',
        'contact_type': 'technical'},
       ],
 
   # Descreve a organização responsável pelo serviço    
   'organization': {
-      'name': [('GIdLab', 'pt-br')],
-      'display_name': [('GIdLab', 'pt-br')],
-      'url': [('http://gidlab.rnp.br', 'pt-br')],
+      'name': [('ACME', 'pt-br')],
+      'display_name': [('ACME', 'pt-br')],
+      'url': [('http://exemplo.com.br', 'pt-br')],
     },
 }
 ``` 
