@@ -4,8 +4,8 @@ import saml2
 import saml2.saml
 
 # configurações de ambiente
-DOMAIN = "dev.gidlab.rnp.br"
-PORT = "8080"
+DOMAIN = "sarom.brainyit.com.br"
+PORT = "9090"
 FQDN = "http://"+DOMAIN+":"+PORT
 CERT_DIR = "certificates"
 
@@ -122,7 +122,7 @@ SAML_DEFAULT_BINDING = saml2.BINDING_HTTP_POST
 SAML_IGNORE_LOGOUT_ERRORS = True
 
 # Serviço de descoberta da cafeexpresso
-SAML2_DISCO_URL = 'https://ds.cafeexpresso.rnp.br/WAYF.php'
+#SAML2_DISCO_URL = 'https://ds.cafeexpresso.rnp.br/WAYF.php'
 
 # Cria usuário Django a partir da asserção SAML caso o mesmo não exista
 SAML_CREATE_UNKNOWN_USER = True 
@@ -157,7 +157,7 @@ SAML_CONFIG = {
           'ui_info': {
                 'display_name': {'text':'SP Django Implicit',
                                  'lang':'en'},
-                'description': {'text':'Provedor de serviços Django Implicit',
+                'description': {'text':'Provedor de serviços Django',
                                 'lang':'en'},
                 'information_url': {'text':'http://sp.information.url/',
                                     'lang':'en'},
@@ -208,7 +208,7 @@ SAML_CONFIG = {
       },
   # Indica onde os metadados podem ser encontrados
   'metadata': {
-      'remote': [{"url": "https://ds.cafeexpresso.rnp.br/metadata/ds-metadata.xml","cert": "null"},]
+      'remote': [{"url": "https://idp.brainyit.com.br/idp/shibboleth","cert": "null"},]
       },
 
   # Configurado como 1 para fornecer informações de debug 
@@ -226,17 +226,17 @@ SAML_CONFIG = {
 
   # Descreve a pessoa responsável pelo serviço
   'contact_person': [
-      {'given_name': 'GIdLab',
+      {'given_name': 'BrainyIT',
        'sur_name': 'Equipe',
-       'company': 'RNP',
-       'email_address': 'gidlab@rnp.br',
+       'company': 'BrainyIT',
+       'email_address': 'sarom@brainyit.com.br',
        'contact_type': 'technical'},
       ],
 
   # Descreve a organização responsável pelo serviço    
   'organization': {
-      'name': [('GIdLab', 'pt-br')],
-      'display_name': [('GIdLab', 'pt-br')],
-      'url': [('http://gidlab.rnp.br', 'pt-br')],
+      'name': [('BrainyIT', 'pt-br')],
+      'display_name': [('BrainyIT', 'pt-br')],
+      'url': [('http://brainyit.com.br', 'pt-br')],
     },
   }
