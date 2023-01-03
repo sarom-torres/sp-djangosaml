@@ -321,4 +321,26 @@ A lista abaixo contém os principais *endpoints* configurados na aplicação.
 - `/users`: *endpoint* protegido com autenticação SAML. Apresenta em tela os atributos obtidos do IdP.
 
 
+## Erros mapeados
 
+### no such table: django_session
+
+Página de erro:
+
+```
+OperationalError at /saml2/login/
+no such table: django_session
+
+Request Method: 	GET
+Django Version: 	3.0.6
+Exception Type: 	OperationalError
+Exception Value: 	
+no such table: django_session
+```
+
+Solução:
+
+```
+python manage.py makemigrations
+python manage.py migrate
+```
